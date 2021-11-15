@@ -12,13 +12,13 @@ import { dataFromAPI } from "./js/postrequest";
 
 //import your scss
 
-/*
+
 import "./styles/base.scss"
 import "./styles/footer.scss"
 import "./styles/form.scss"
 import "./styles/header.scss"
 import "./styles/resets.scss"
-*/
+
 
 //export the main function of the application javascript
 

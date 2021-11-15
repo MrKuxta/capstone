@@ -50,7 +50,7 @@ app.post('/traveldata', async (req, res)=>{
 
     const geoNameKey = process.env.GEOAPI_USERNAME;
     const geoNameURL = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=1&username=${geoNameKey}`;
-    //don't forget to encode it
+    //don't forget to encode it as per the API documentation
     await (fetch(encodeURI(geoNameURL))
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
