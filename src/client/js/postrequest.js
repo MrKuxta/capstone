@@ -4,7 +4,8 @@
 
 async function dataFromAPI (userInput) {
 
-    let response = await fetch('/traveldata', {
+    //use absolute Url instead of relative
+    let response = await fetch('http://localhost:8081/traveldata', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': "application/json" },

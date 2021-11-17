@@ -4,7 +4,7 @@ dotenv.config();
 //express to run server and routes
 var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
+//const mockAPIResponse = require('./mockAPI.js')
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const cors = require("cors");
@@ -43,7 +43,7 @@ app.listen(8081, function () {
 
 app.post('/traveldata', async (req, res)=>{
 
-    const destination = reg.body.city;
+    const destination = req.body.city;
 
 //GEONAME API
     let geoNameData = ''

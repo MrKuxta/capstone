@@ -3,7 +3,14 @@ const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+
 module.exports = {
+//Configure the dev-server so that it will use the route server instead of the dev-server server
+    devServer: {
+        /*proxy: {
+          '/traveldata': 'http://localhost:8081',
+        },
+      },*/
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
