@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "Stavros Koukourikos",
   "license": "ISC",
-  "description": "evaluating a news article with NLP ",
+  "description": "capstone project",
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "body-parser": "^1.19.0",
