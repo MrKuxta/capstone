@@ -55,7 +55,8 @@ app.post('/traveldata', async (req, res)=>{
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: http://api.geonames.org/postalCodeLookupJSON?postalcode=6600&country=AT&username=demo
-    .then(data => geoNameData = { lng: data.geonames[0].lon, lat: data.geonames[0].lat, countryName: data.geonames[0].placeName, city: data.geonames[0].countryCode })
+    //.then(data => geoNameData = { lng: data.geonames[0].lon, lat: data.geonames[0].lat, countryName: data.geonames[0].placeName, city: data.geonames[0].countryCode })
+    .then(data => geoNameData = { lng: data.geonames.lon, lat: data.geonames.lat, countryName: data.geonames.placeName, city: data.geonames.countryCode })
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
@@ -75,7 +76,8 @@ app.post('/traveldata', async (req, res)=>{
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: https://www.weatherbit.io/api/weather-current
-    .then(res => weatherBitData = { temp: res.data[0].temp, weather: res.data[0].weather.description, icon: res.data[0].weather.icon })
+    //.then(res => weatherBitData = { temp: res.data[0].temp, weather: res.data[0].weather.description, icon: res.data[0].weather.icon })
+    .then(res => weatherBitData = { temp: res.data.temp, weather: res.data.weather.description, icon: res.data.weather.icon })
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
@@ -91,7 +93,7 @@ app.post('/traveldata', async (req, res)=>{
     await (fetch(weatherBitURLFuture)
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
-    .then(res => weatherBitData = { temp: res.data[0].temp, weather: res.data[0].weather.description, icon: res.data[0].weather.icon })
+    .then(res => weatherBitData = { temp: res.data.temp, weather: res.data.weather.description, icon: res.data.weather.icon })
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
@@ -104,13 +106,13 @@ app.post('/traveldata', async (req, res)=>{
     const pixaBayKey = process.env.PIXABAY_APIKEY;
     const pixaBayBase = 'https://pixabay.com/api/'
 
-    const pixaBayURL = `${pixaBayBase}?key=${pixaBayKey}&q=${geonameData.city}&category=places&image_type=photo&orientation=horizontal&safesearch=true`
+    const pixaBayURL = `${pixaBayBase}?key=${pixaBayKey}&q=${geoNameData.city}&category=places&image_type=photo&orientation=horizontal&safesearch=true`
 
     await (fetch(pixaBayURL)
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: https://pixabay.com/api/docs/
-    .then(data => {pixaBayData = { img: data.hits[0].webformatURL }
+    .then(data => {pixaBayData = { img: data.hits.webformatURL }
     })
     .catch(error => {
       console.log(error)
