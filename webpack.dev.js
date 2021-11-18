@@ -9,8 +9,8 @@ module.exports = {
     devServer: {
         /*proxy: {
           '/traveldata': 'http://localhost:8081',
-        },
-      },*/
+        },*/
+      },
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
@@ -18,7 +18,7 @@ module.exports = {
     output: {
         libraryTarget:"var",
         library:"Client"
-    }},
+    },
     module: {
         rules: [
             {
