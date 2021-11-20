@@ -1,3 +1,5 @@
+let projectData;
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -41,12 +43,14 @@ app.listen(8081, function () {
 //Setting up POST Route to contact with the client
 
 
+
 app.post('/traveldata', async (req, res)=>{
 
     const destination = req.body.city;
-
+  
 //GEONAME API
-    let geoNameData = ''
+    
+    let geoNameData = {};
 
     const geoNameKey = process.env.GEOAPI_USERNAME;
     const geoNameURL = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=1&username=${geoNameKey}`;
@@ -56,28 +60,58 @@ app.post('/traveldata', async (req, res)=>{
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: http://api.geonames.org/postalCodeLookupJSON?postalcode=6600&country=AT&username=demo
     //.then(data => geoNameData = { lng: data.geonames[0].lon, lat: data.geonames[0].lat, countryName: data.geonames[0].placeName, city: data.geonames[0].countryCode })
-    .then(data => geoNameData = { lng: data.geonames.lon, lat: data.geonames.lat, countryName: data.geonames.placeName, city: data.geonames.countryCode })
+    .then(data => {
+      //to check if there are any error messages returned from the API
+      console.log(data);
+      /*
+      geoNameData = {
+        lng: data.geonames.lng,
+        lat: data.geonames.lat,
+        countryName: data.geonames.countryName,
+        city: data.geonames.countryCode
+      }
+      */
+
+      Object.assign(geoNameData, {lng: data.geonames.lng});
+      Object.assign(geoNameData, {lat: data.geonames.lat});
+      Object.assign(geoNameData, {countryName: data.geonames.countryName});
+      Object.assign(geoNameData, {city: data.geonames.countryCode});
+
+      //geoNameData.lng = data.geonames.lng
+        console.log(`your data is ${geoNameData}`)
+
+      })
+
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
       return error.message
-    }))
-
+    })
+    )
 
 //WEATHERBIT API current
-    let weatherBitData = ''
+    let weatherBitData = {};
 
     const weatherBitKey = process.env.WEATHERBIT_APIKEY;
     const weatherBitBase = 'http://api.weatherbit.io/v2.0/current?'
+    
 
-    const weatherBitURL = `${weatherBitBase}lat=${geoNameData.lat}&lon=${geoNameData.lng}&key=${weatherBitKey}&units=I`
+    const weatherBitURL = `${weatherBitBase}lat=${geoNameData.lat}&lon=${geoNameData.lng}&key=${weatherBitKey}&units=M`
+    console.log(weatherBitURL);
 
     await (fetch(weatherBitURL)
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: https://www.weatherbit.io/api/weather-current
     //.then(res => weatherBitData = { temp: res.data[0].temp, weather: res.data[0].weather.description, icon: res.data[0].weather.icon })
-    .then(res => weatherBitData = { temp: res.data.temp, weather: res.data.weather.description, icon: res.data.weather.icon })
+    .then(response => {
+      console.log(response);
+      weatherBitData = {
+        temp: response.data.temp,
+        weather: response.data.weather.description,
+        icon: response.data.weather.icon
+      }
+    })
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
@@ -93,7 +127,14 @@ app.post('/traveldata', async (req, res)=>{
     await (fetch(weatherBitURLFuture)
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
-    .then(res => weatherBitData = { temp: res.data.temp, weather: res.data.weather.description, icon: res.data.weather.icon })
+    .then(res => {
+      console.log(res);
+      weatherBitData = {
+      temp: res.data.temp,
+      weather: res.data.weather.description,
+      icon: res.data.weather.icon
+      }
+    })
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
@@ -112,7 +153,11 @@ app.post('/traveldata', async (req, res)=>{
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: https://pixabay.com/api/docs/
-    .then(data => {pixaBayData = { img: data.hits.webformatURL }
+    .then(data => {
+      console.log(data);
+      pixaBayData = {
+        img: data.hits.webformatURL
+      }
     })
     .catch(error => {
       console.log(error)
@@ -120,7 +165,15 @@ app.post('/traveldata', async (req, res)=>{
     }))
 
     //tsekare to date:userinput apo pou to pairnei
-    projectData = { temp: weatherBitData.temp, weather: weatherBitData.weather, icon: weatherBitData.icon, cityName: geoNameData.city, countryName: geoNameData.countryName, date: userInput.date, img: pixaBayData.img }
+    projectData = {
+      temp: weatherBitData.temp,
+      weather: weatherBitData.weather,
+      icon: weatherBitData.icon,
+      cityName: geoNameData.city,
+      countryName: geoNameData.countryName,
+      date: userInput.date,
+      img: pixaBayData.img
+    }
 
     res.send(projectData)
     console.log(projectData);
