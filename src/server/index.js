@@ -63,20 +63,21 @@ app.post('/traveldata', async (req, res)=>{
     .then(data => {
       //to check if there are any error messages returned from the API
       console.log(data);
-      /*
+      
+      //geonames is an array
       geoNameData = {
-        lng: data.geonames.lng,
-        lat: data.geonames.lat,
-        countryName: data.geonames.countryName,
-        city: data.geonames.countryCode
+        lng: data.geonames[0].lng,
+        lat: data.geonames[0].lat,
+        countryName: data.geonames[0].countryName,
+        city: data.geonames[0].countryCode
       }
+      
+      /*
+      Object.assign(geoNameData, {lng: data.geonames[0].lng});
+      Object.assign(geoNameData, {lat: data.geonames[0].lat});
+      Object.assign(geoNameData, {countryName: data.geonames[0].countryName});
+      Object.assign(geoNameData, {city: data.geonames[0].countryCode});
       */
-
-      Object.assign(geoNameData, {lng: data.geonames.lng});
-      Object.assign(geoNameData, {lat: data.geonames.lat});
-      Object.assign(geoNameData, {countryName: data.geonames.countryName});
-      Object.assign(geoNameData, {city: data.geonames.countryCode});
-
       //geoNameData.lng = data.geonames.lng
         console.log(`your data is ${geoNameData}`)
 
@@ -107,9 +108,9 @@ app.post('/traveldata', async (req, res)=>{
     .then(response => {
       console.log(response);
       weatherBitData = {
-        temp: response.data.temp,
-        weather: response.data.weather.description,
-        icon: response.data.weather.icon
+        temp: response.data[1].temp,
+        weather: response.data[0].weather.description,
+        icon: response.data.weather[0].icon
       }
     })
     //edw to error function to pira apo to paradeigma
