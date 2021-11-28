@@ -42,11 +42,12 @@ app.listen(8081, function () {
 
 //Setting up POST Route to contact with the client
 
-
+//const dateInput = document.getElementById('date');
 
 app.post('/traveldata', async (req, res)=>{
 
     const destination = req.body.city;
+    const dateInput = req.body.date;
   
 //GEONAME API
     
@@ -69,7 +70,7 @@ app.post('/traveldata', async (req, res)=>{
         lng: data.geonames[0].lng,
         lat: data.geonames[0].lat,
         countryName: data.geonames[0].countryName,
-        city: data.geonames[0].countryCode
+        city: data.geonames[0].name
       }
       
       /*
@@ -79,7 +80,7 @@ app.post('/traveldata', async (req, res)=>{
       Object.assign(geoNameData, {city: data.geonames[0].countryCode});
       */
       //geoNameData.lng = data.geonames.lng
-        console.log(`your data is ${geoNameData}`)
+        console.log(`your data is`,geoNameData)
 
       })
 
@@ -98,6 +99,11 @@ app.post('/traveldata', async (req, res)=>{
     
 
     const weatherBitURL = `${weatherBitBase}lat=${geoNameData.lat}&lon=${geoNameData.lng}&key=${weatherBitKey}&units=M`
+    
+    console.log("geoNameData.lat", geoNameData.lat);
+
+    console.log("geoNameData.lng", geoNameData.lng);
+
     console.log(weatherBitURL);
 
     await (fetch(weatherBitURL)
@@ -108,18 +114,21 @@ app.post('/traveldata', async (req, res)=>{
     .then(response => {
       console.log(response);
       weatherBitData = {
-        temp: response.data[1].temp,
+        temp: response.data[0].temp,
         weather: response.data[0].weather.description,
-        icon: response.data.weather[0].icon
+        icon: response.data[0].weather.icon
       }
     })
+
+
     //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
       return error.message
     }))
 
-
+    console.log(`your weatherbit data is`,weatherBitData);
+/*
 //WEATHERBIT API future
     const weatherBitBaseFuture = 'http://api.weatherbit.io/v2.0/forecast/daily?'
 
@@ -141,6 +150,7 @@ app.post('/traveldata', async (req, res)=>{
       console.log(error)
       return error.message
     }))
+*/
 
 //PIXABAY
     let pixaBayData = ''
@@ -150,6 +160,8 @@ app.post('/traveldata', async (req, res)=>{
 
     const pixaBayURL = `${pixaBayBase}?key=${pixaBayKey}&q=${geoNameData.city}&category=places&image_type=photo&orientation=horizontal&safesearch=true`
 
+    console.log(pixaBayURL);
+
     await (fetch(pixaBayURL)
     .then(res => res.json())
     //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
@@ -157,7 +169,7 @@ app.post('/traveldata', async (req, res)=>{
     .then(data => {
       console.log(data);
       pixaBayData = {
-        img: data.hits.webformatURL
+        img: data.hits[0].webformatURL
       }
     })
     .catch(error => {
@@ -172,7 +184,7 @@ app.post('/traveldata', async (req, res)=>{
       icon: weatherBitData.icon,
       cityName: geoNameData.city,
       countryName: geoNameData.countryName,
-      date: userInput.date,
+      date: dateInput,
       img: pixaBayData.img
     }
 
