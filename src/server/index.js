@@ -127,7 +127,10 @@ app.post('/traveldata', async (req, res)=>{
       return error.message
     }))
 
-    console.log(`your weatherbit data is`,weatherBitData);
+    console.log(`your weatherbit data is :`);
+    console.log(`temperature :`, weatherBitData.temp);
+    console.log(`weather description :`, weatherBitData.weather);
+    console.log(`weather looks like :`, weatherBitData.icon);
 /*
 //WEATHERBIT API future
     const weatherBitBaseFuture = 'http://api.weatherbit.io/v2.0/forecast/daily?'
@@ -171,6 +174,7 @@ app.post('/traveldata', async (req, res)=>{
       pixaBayData = {
         img: data.hits[0].webformatURL
       }
+      console.log(pixaBayData);
     })
     .catch(error => {
       console.log(error)
@@ -186,8 +190,13 @@ app.post('/traveldata', async (req, res)=>{
     let date = dateInput
     let img = pixaBayData.img
 
-    console.log(temp)
-    console.log(weather)
+    console.log(tempOut)
+    console.log(weatherOut)
+    console.log(iconOut)
+    console.log(cityName)
+    console.log(countryNameOut)
+    console.log(date)
+    console.log(img)
 
     projectData = {
       tempOut,
@@ -201,6 +210,7 @@ app.post('/traveldata', async (req, res)=>{
 
     res.send(projectData)
     console.log(projectData);
+
 
 })
 
