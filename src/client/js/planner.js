@@ -17,8 +17,9 @@ function returnResults(e) {
     let userInput = {city: cityUserInput.value, date: dateUserInput.value};
 
     dataFromAPI(userInput)
-    .then(projectData => {
-        updateUI(projectData)
+    .then(async projectData => {
+        const projectDataJSON = await projectData.json();
+        updateUI(projectDataJSON)
     })
 }
 

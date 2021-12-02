@@ -5,23 +5,23 @@ function updateUI(projectData) {
     let results = document.getElementById('results');
     let city = document.getElementById('citySection');
     //let date = document.getElementById('dateSection');
-    let weather = document.getElementById('weatherSection');
+    let weatherSec = document.getElementById('weatherSection');
 
     city.innerHTML=`
     <h3> You are travelling in ${timeToTrip(projectData.date)/(1000*60*60*24)}</h3>
     <div> Be prepared for the ${projectData.date} ! </div>
-    <div> Your trip to ${projectData.city} is coming </div>
+    <div> Your trip to ${projectData.cityName} is coming </div>
     <div> 
         <img src=${projectData.img} alt="Photo of the city">
     </div>
     `
 
-    weather.innerHTML=`
-    <h3> The temperature now is ${projectData.temp}</h3>
+    weatherSec.innerHTML=`
+    <h3> The temperature now is ${projectData.tempOut}</h3>
     <h3> and looks like:
-    ${projectData.weather}
+    ${projectData.weatherOut}
     <div>
-    <img src="https://www.weatherbit.io/static/img/icons/${projectData.icon}.png" alt="weather looks like">
+    <img src="https://www.weatherbit.io/static/img/icons/${projectData.iconOut}.png" alt="weather looks like">
     </div>
     `
 

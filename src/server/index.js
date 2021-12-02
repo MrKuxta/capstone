@@ -178,14 +178,25 @@ app.post('/traveldata', async (req, res)=>{
     }))
 
     //tsekare to date:userinput apo pou to pairnei
+    let tempOut = weatherBitData.temp
+    let weatherOut = weatherBitData.weather
+    let iconOut = weatherBitData.icon
+    let cityName = geoNameData.city
+    let countryNameOut = geoNameData.countryName
+    let date = dateInput
+    let img = pixaBayData.img
+
+    console.log(temp)
+    console.log(weather)
+
     projectData = {
-      temp: weatherBitData.temp,
-      weather: weatherBitData.weather,
-      icon: weatherBitData.icon,
-      cityName: geoNameData.city,
-      countryName: geoNameData.countryName,
-      date: dateInput,
-      img: pixaBayData.img
+      tempOut,
+      weatherOut,
+      iconOut,
+      cityName,
+      countryNameOut,
+      date,
+      img
     }
 
     res.send(projectData)

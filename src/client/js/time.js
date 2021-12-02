@@ -7,7 +7,8 @@ function today() {
     let month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0, so we add +1 to match the normal calendar order
     let year = today.getFullYear();
 
-    today = day + '-' + month + '-' + year
+    //it returns a date object type
+    today = new Date(day + '-' + month + '-' + year);
 
     return today
 }
@@ -18,7 +19,7 @@ function timeToTrip(date) {
 
     let dateFuture = new Date(date.replace(/\-/g, '/'));
     
-    let timeInMsec = (dateFuture.getTime() - today.getTime())
+    let timeInMsec = dateFuture.getTime() - today().getTime();
     console.log("Time difference: "+timeInMsec+"msec")
 
     return timeInMsec
