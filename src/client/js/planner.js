@@ -20,7 +20,7 @@ function returnResults(e) {
     .then(async projectData => {
         const projectDataJSON = await projectData.json();
         updateUI(projectDataJSON)
-    })
+})
 }
 
 export { returnResults }

@@ -1,5 +1,7 @@
 // mporw na kanw merge to today kai to datecountdown edw
 
+let todayMs = ''
+
 //getting today's date to be compared with the date of the trip
 function today() {
     let today = new Date();
@@ -8,9 +10,10 @@ function today() {
     let year = today.getFullYear();
 
     //it returns a date object type
-    today = new Date(day + '-' + month + '-' + year);
+    today = new Date(day + '/' + month + '/' + year);
+    todayMs =today.getTime();
 
-    return today
+    return todayMs
 }
 
 export {today}
@@ -18,8 +21,9 @@ export {today}
 function timeToTrip(date) {
 
     let dateFuture = new Date(date.replace(/\-/g, '/'));
-    
-    let timeInMsec = dateFuture.getTime() - today().getTime();
+
+    //getTime() to convert the date in milliseconds
+    let timeInMsec = (dateFuture.getTime() - todayMs);
     console.log("Time difference: "+timeInMsec+"msec")
 
     return timeInMsec
