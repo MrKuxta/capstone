@@ -1,10 +1,40 @@
 # Capstone Travel Project
+#### by kuxta 
 
 ## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+This project requires you to create a custom travel app. It is retrieving data from three **APIs**. Everything is happening in a **Webpack** environment, using an **express** server and **service workers**.
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+## How to use it
+It is required to add the:
+**place of your trip** and the
+**date of arrival**.
+Then press the button and the application will generate the information for you!
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+## Details about the application
+
+###### The app uses the following APIs:
+- GeoNames
+- WeatherBit
+- Pixabay
+
+###### Everyone can run the app
+As long as you have taken the API keys and have added them in a .env file
+with the following format:
+
+1. API_KEY=
+2. GEOAPI_USERNAME=
+3. WEATHERBIT_APIKEY=
+4. PIXABAY_APIKEY=
+
+###### To start the server:
+```
+npm run start
+```
+
+###### To start the developemnt server:
+```
+npm run build-dev
+```
+
+
+# Enjoy! ::world_map: :grinning:

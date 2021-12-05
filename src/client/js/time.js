@@ -15,10 +15,10 @@ function today() {
 
     //it returns a date object type
     today = new Date(day + '/' + month + '/' + year)
-    todayMs =today.getTime();
+    //todayMs =today.getTime();
 
-    return todayMs
-    //return today
+    //return todayMs
+    return today
 }
 
 export {today}
@@ -29,13 +29,13 @@ function timeToTrip(date) {
 
     let dateFuture = new Date(date.replace(/\-/g, '/'));
     let dateFutureInMs = dateFuture.getTime();
-    //let todayInMs = today().getTime();
-    let todayInMs = today();
+    let todayInMs = today().getTime();
+    //let todayInMs = today();
 
     //getTime() to convert the date in milliseconds
     //let timeInMsec = dateFuture.getTime() - today().getTime()
     let timeInMs = dateFutureInMs - todayInMs
-    console.log("Time difference: "+timeInMs+"msec")
+    //console.log("Time difference: "+timeInMs+"msec")
 
     return timeInMs
 }
