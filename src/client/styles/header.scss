@@ -1,5 +1,16 @@
-header {
+.headline {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     padding: 10px 40px;
+    color: grey;
+}
+
+#title {
+    font-size: x-large;
+    margin: 5px;
+}
+
+#author {
+    font-size: small;
+    margin: 5px;
 }

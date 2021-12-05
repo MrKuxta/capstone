@@ -5,8 +5,22 @@ form {
 }
 
 input {
-    padding: 5px 20px;
-    width: 100%;
+    padding: 3px 10px;
+    width: 20%;
     line-height: 16px;
-    margin: 10px 0;
+    margin: 10px 10px;
+    border: dotted rgb(207, 97, 46) 1px ;
+}
+
+.userInputs {
+    background-color: rgb(187, 234, 240);
+
+}
+
+#generate {
+    margin: 10px;
+}
+
+#generate:hover {
+    background: hotpink;
 }

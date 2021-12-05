@@ -1,49 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Weather Journal</title>
-<!--<script type="text/javascript" src="dist/main.js"></script>-->
-</head>
-<body>
-<div id = "app">
 
-  <div class ="holder headline">
-    Capstone project: Travel App!
-  </div>
+ <head>
+  <meta charset="UTF-8">
+  <title>Weather Journal</title>
+  <!--<script type="text/javascript" src="dist/main.js"></script>-->
+ </head>
 
-  <div class ="holder city" >
-    <label for="zip">Enter city of destination</label>
-    <input type="text" id="city" placeholder="Enter name of the city">
-  </div>
-
-  <div class ="holder date" >
-    <label for="date">When are you travelling?</label>
-    <textarea class= "myInput" id="date" placeholder="Enter date of trip" rows="1" cols="50"></textarea> 
-  </div>
-
-  <div class="button">
-    <button id="generate" type = "submit"> Take forecast! </button>
-  </div>
-
-  <div class = "results">
-    <div id="citySection"></div>
-    <div id="dateSection"></div>
-    <div id="weatherSection"></div>
-  </div>
-
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-
-    <div id = "entryHolder">
-      <div id = "date"></div> 
-      <div id = "temp"></div>
-      <div id = "content"></div>
-    </div>
-
-  </div>
+ <body>
+  <div id = "app">
   
-</div>
+    <div class ="holder headline">
+      <p id="title">Travel Planner</p>
+      <p id="author">by kuxta</p>
+    </div>
+  
+    <div class = userInputs>
 
-</body>
+      <div class ="holder city" >
+        <form>
+         <label for="zip">Where are     you travelling to?</label>
+          <input type="text" id="city" placeholder="City to explore">
+        </form> 
+      </div>
+  
+      <div class ="holder date" >
+        <form>
+         <label for="date">When are you travelling?</label>
+          <input type="text" class="myInput" id="date" placeholder="dd/mm/yyyy">
+        </form> 
+      </div>
+  
+      <div class="button">
+        <button id="generate" type = "submit"> Start planning </button>
+      </div>
+
+    </div>
+  
+      <div id = "results">
+        <div id="citySection"></div>
+        <div id="weatherSection"></div>
+        <div id="dateSection"></div>
+      </div>
+  
+    <!--
+    <div class ="holder entry">
+      <div class = "title">Most Recent Entry</div>
+  
+      <div id = "entryHolder">
+        <div id = "date"></div> 
+        <div id = "temp"></div>
+        <div id = "content"></div>
+      </div>
+  
+    </div>
+    -->
+    
+  </div>
+
+ </body>
+
 </html>
