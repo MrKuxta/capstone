@@ -2,6 +2,8 @@ import { timeToTrip } from "./time";
 import { today } from "./time";
 
 function updateUI(projectData) {
+
+    let targetDate = projectData.date;
     
     let results = document.getElementById('results');
     let city = document.getElementById('citySection');
@@ -10,8 +12,8 @@ function updateUI(projectData) {
     let dateSec = document.getElementById('dateSection');
 
     dateSec.innerHTML=`
-    <h3> Today is ${today}</h3>
-    <h3> You are travelling in ${timeToTrip(projectData.date)/(1000*60*60*24)} days!</h3>
+    <h3> Today is ${today()}</h3>
+    <h3> You are travelling in ${timeToTrip(targetDate)} days!</h3>
     `
 
     city.innerHTML=`
