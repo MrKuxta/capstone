@@ -42,21 +42,17 @@
         <div id="weatherSection"></div>
         <div id="dateSection"></div>
       </div>
-  
-    <!--
-    <div class ="holder entry">
-      <div class = "title">Most Recent Entry</div>
-  
-      <div id = "entryHolder">
-        <div id = "date"></div> 
-        <div id = "temp"></div>
-        <div id = "content"></div>
-      </div>
-  
-    </div>
-    -->
     
   </div>
+
+  <!--initiating service workers--> 
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/service-worker.js");
+      });
+    }
+  </script>
 
  </body>
 

@@ -37,8 +37,6 @@ app.listen(8081, function () {
     console.log('Capstone Travel app listening on port 8081!')
 })
 
-//MEXRI EDW TA VASIKA
-//APO EDW KAI KATW TA
 
 //Setting up POST Route to contact with the client
 
@@ -58,7 +56,6 @@ app.post('/traveldata', async (req, res)=>{
     //don't forget to encode it as per the API documentation
     await (fetch(encodeURI(geoNameURL))
     .then(res => res.json())
-    //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: http://api.geonames.org/postalCodeLookupJSON?postalcode=6600&country=AT&username=demo
     //.then(data => geoNameData = { lng: data.geonames[0].lon, lat: data.geonames[0].lat, countryName: data.geonames[0].placeName, city: data.geonames[0].countryCode })
     .then(data => {
@@ -72,19 +69,9 @@ app.post('/traveldata', async (req, res)=>{
         countryName: data.geonames[0].countryName,
         city: data.geonames[0].name
       }
-      
-      /*
-      Object.assign(geoNameData, {lng: data.geonames[0].lng});
-      Object.assign(geoNameData, {lat: data.geonames[0].lat});
-      Object.assign(geoNameData, {countryName: data.geonames[0].countryName});
-      Object.assign(geoNameData, {city: data.geonames[0].countryCode});
-      */
-      //geoNameData.lng = data.geonames.lng
         console.log(`your data is`,geoNameData)
 
       })
-
-    //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
       return error.message
@@ -108,7 +95,6 @@ app.post('/traveldata', async (req, res)=>{
 
     await (fetch(weatherBitURL)
     .then(res => res.json())
-    //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: https://www.weatherbit.io/api/weather-current
     //.then(res => weatherBitData = { temp: res.data[0].temp, weather: res.data[0].weather.description, icon: res.data[0].weather.icon })
     .then(response => {
@@ -119,9 +105,6 @@ app.post('/traveldata', async (req, res)=>{
         icon: response.data[0].weather.icon
       }
     })
-
-
-    //edw to error function to pira apo to paradeigma
     .catch(error => {
       console.log(error)
       return error.message
@@ -131,29 +114,6 @@ app.post('/traveldata', async (req, res)=>{
     console.log(`temperature :`, weatherBitData.temp);
     console.log(`weather description :`, weatherBitData.weather);
     console.log(`weather looks like :`, weatherBitData.icon);
-/*
-//WEATHERBIT API future
-    const weatherBitBaseFuture = 'http://api.weatherbit.io/v2.0/forecast/daily?'
-
-    const weatherBitURLFuture = `${weatherBitBaseFuture}lat=${geoNameData.lat}&lon=${geoNameData.lng}&key=${weatherBitKey}&units=I`
-    
-    await (fetch(weatherBitURLFuture)
-    .then(res => res.json())
-    //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
-    .then(res => {
-      console.log(res);
-      weatherBitData = {
-      temp: res.data.temp,
-      weather: res.data.weather.description,
-      icon: res.data.weather.icon
-      }
-    })
-    //edw to error function to pira apo to paradeigma
-    .catch(error => {
-      console.log(error)
-      return error.message
-    }))
-*/
 
 //PIXABAY
     let pixaBayData = ''
@@ -167,7 +127,6 @@ app.post('/traveldata', async (req, res)=>{
 
     await (fetch(pixaBayURL)
     .then(res => res.json())
-    //edw to data to pira apo to paradeigma kai ta mesa stin parenthesi
     //save infromation in an object endpoint based on the repsonses coming from here: https://pixabay.com/api/docs/
     .then(data => {
       console.log(data);
@@ -180,8 +139,6 @@ app.post('/traveldata', async (req, res)=>{
       console.log(error)
       return error.message
     }))
-
-    //tsekare to date:userinput apo pou to pairnei
     let tempOut = weatherBitData.temp
     let weatherOut = weatherBitData.weather
     let iconOut = weatherBitData.icon
@@ -213,6 +170,3 @@ app.post('/traveldata', async (req, res)=>{
 
 
 })
-
-//edw to data to pira apo to paradeigma, den kserw ti simainei. MPOREI KAI NA MIN XREIAZETAI
-//module.exports = app

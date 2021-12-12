@@ -1,5 +1,3 @@
-//antikatestise to me to validator
-
 import { dataFromAPI } from "./postrequest";
 import { updateUI } from "./updateUI";
 

@@ -1,5 +1,3 @@
-// mporw na kanw merge to today kai to datecountdown edw
-
 //let todayMs = ''
 
 //getting today's date to be compared with the date of the trip
