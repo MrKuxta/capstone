@@ -46,12 +46,15 @@ app.post('/traveldata', async (req, res)=>{
 
     const destination = req.body.city;
     const dateInput = req.body.date;
+
   
 //GEONAME API
     
     let geoNameData = {};
 
-    const geoNameKey = process.env.GEOAPI_USERNAME;
+    //the api keys are sacved here for the purposes of the submision
+
+    const geoNameKey = "kuxta";
     const geoNameURL = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=1&username=${geoNameKey}`;
     //don't forget to encode it as per the API documentation
     await (fetch(encodeURI(geoNameURL))
@@ -81,7 +84,10 @@ app.post('/traveldata', async (req, res)=>{
 //WEATHERBIT API current
     let weatherBitData = {};
 
-    const weatherBitKey = process.env.WEATHERBIT_APIKEY;
+    const weatherBitKey = "c5c636a322604ecda9c9d1e100eecb36";
+
+    //the api keys are sacved here for the purposes of the submision
+
     const weatherBitBase = 'http://api.weatherbit.io/v2.0/current?'
     
 
@@ -118,7 +124,9 @@ app.post('/traveldata', async (req, res)=>{
 //PIXABAY
     let pixaBayData = ''
 
-    const pixaBayKey = process.env.PIXABAY_APIKEY;
+    //the api keys are sacved here for the purposes of the submision
+
+    const pixaBayKey = "23998046-94a46a5c36e5c0cba87fd324b";
     const pixaBayBase = 'https://pixabay.com/api/'
 
     const pixaBayURL = `${pixaBayBase}?key=${pixaBayKey}&q=${geoNameData.city}&category=places&image_type=photo&orientation=horizontal&safesearch=true`
