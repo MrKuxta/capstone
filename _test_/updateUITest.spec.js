@@ -1,5 +1,5 @@
 //import the js file to test
-import { updateUI } from "./updateUI";
+import { updateUI } from "../src/client/js/updateUI";
 
 describe("Testing functionality", () => {
     test("Testing the updateUI function", () => {

@@ -2,10 +2,156 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 90%;
+    //width: 90%;
     background-color: rgb(240, 224, 247);
 }
 
 body {
 	line-height: 1;
+}
+
+@media (min-width:1101px) and (max-width:1400px) {
+        
+    .headline {
+        font-size: 12px;
+    }
+    
+    .userInputs {
+        font-size: 12px;
+    }
+
+    .results {
+        font-size: 14px;
+        margin-top: 15px;
+        margin-top: 15px;
+    }
+
+    .image {
+        width: 80%;
+    }
+}
+
+
+
+@media (min-width:851px) and (max-width:1100px) {
+
+    .headline {
+        font-size: 10px;
+    }
+    
+    .userInputs {
+        font-size: 10px;
+    }
+
+    .image {
+        width: 80%;
+    }
+
+    .results {
+        font-size: 12px;
+        margin-top: 15px;
+        margin-top: 15px;
+    }
+
+    .container {
+        width: 95%;
+        
+    }
+
+    .headline {
+        font-size: 10px;
+    }
+    
+    .userInputs {
+        font-size: 10px;
+    }
+
+    .results {
+        font-size: 10px;
+        margin-top: 10px;
+        margin-top: 10px;
+    }
+
+}
+
+
+@media (min-width:490px) and (max-width:850px) {
+
+    .container {
+        width: 95%;
+        
+    }
+
+    .headline {
+        font-size: 12px;
+    }
+    
+    .userInputs {
+        font-size: 12px;
+    }
+
+    .results {
+        font-size: 12px;
+        margin-top: 15px;
+        margin-top: 15px;
+    }
+
+    .image {
+        width: 80%;
+    }
+        
+}
+
+
+@media (min-width:350px) and (max-width:489px) {
+
+    .container {
+        width: 95%;
+        
+    }
+
+    .headline {
+        font-size: 10px;
+    }
+    
+    .userInputs {
+        font-size: 10px;
+    }
+
+    .results {
+        font-size: 10px;
+        margin-top: 10px;
+        margin-top: 10px;
+    }
+
+    .image {
+        width: 80%;
+    }
+    
+}
+
+
+@media (max-width:349px) {
+
+    .container {
+        width: 95%;
+        
+    }
+
+    .headline {
+        font-size: 10px;
+    }
+    
+    .userInputs {
+        font-size: 10px;
+    }
+
+    .results {
+        font-size: 10px;
+        margin-top: 10px;
+        margin-top: 10px;
+    }
+    .image {
+        width: 80%;
+    }
 }
